@@ -1,7 +1,9 @@
 
 # Local AWS-like Environment on Debian Server
 
-This guide will help you set up a local cloud environment that mimics AWS services on your Ubuntu Server. You can host websites, applications, and run CI/CD pipelines using GitHub Actions.
+This guide will help you set up a local cloud environment that mimics AWS services on your Debian Server. You can host websites, applications, and run CI/CD pipelines using GitHub Actions.
+
+### No need to use sudo if you are root user
 
 ## Core Technologies
 | AWS Equivalent      | Local/On-Premise Equivalent        |
