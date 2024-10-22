@@ -1,5 +1,5 @@
 
-# Local AWS-like Environment on Ubuntu Server
+# Local AWS-like Environment on Debian Server
 
 This guide will help you set up a local cloud environment that mimics AWS services on your Ubuntu Server. You can host websites, applications, and run CI/CD pipelines using GitHub Actions.
 
