@@ -236,3 +236,67 @@ http://<your-server-ip>:19999
 ```
 Replace `<your-server-ip>` with the actual IP address of your server.
 
+
+# Install MinIO on Your Home Server
+
+## Download MinIO:
+```bash
+wget https://dl.min.io/server/minio/release/linux-amd64/minio
+chmod +x minio
+mv minio /usr/local/bin/
+```
+
+## Create MinIO directories:
+```bash
+mkdir -p /mnt/data
+```
+
+## Create a MinIO service:
+
+Create the systemd service file:
+```bash
+nano /etc/systemd/system/minio.service
+```
+
+Add the following content:
+```ini
+[Unit]
+Description=MinIO
+Documentation=https://docs.min.io
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory=/usr/local/
+ExecStart=/usr/local/bin/minio server --address :9000 /mnt/data
+Restart=always
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
+```
+
+## Start and enable MinIO:
+```bash
+systemctl daemon-reload
+systemctl start minio
+systemctl enable minio
+```
+
+## Access MinIO:
+
+MinIO will now be running on port 9000. You can access it in your browser by going to:
+```arduino
+http://<your-server-ip>:9000
+```
+
+The default access key and secret key will be generated on startup. You can view the output of the MinIO service by running:
+```bash
+journalctl -u minio -f
+```
+
+## Configure MinIO (Optional):
+You can change the access keys by exporting the `MINIO_ACCESS_KEY` and `MINIO_SECRET_KEY` environment variables and restarting the MinIO service.
+
